@@ -11,25 +11,25 @@
       "path": "./tsconfig.vitest.json"
     }
   ],
+
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
     "moduleResolution": "node",
+    "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
+    "lib": ["esnext", "dom"],
     "types": ["vite/client"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.vue"
-  ],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
