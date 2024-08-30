@@ -9,7 +9,6 @@ main = Blueprint('main', __name__)
 
 # Helper function to get a user by username
 def get_user(username):
-    print(f'from users {users_db}')
     return users_db.get(username)
 
 # Authentication routes
@@ -36,11 +35,16 @@ def login():
         return jsonify(access_token=access_token), 200
     return jsonify({"msg": "Bad username or password"}), 401
 
+
+
 @main.route('/tasks', methods=['GET'])
 @jwt_required()
 def get_tasks():
     current_user = get_user(get_jwt_identity())
-    return jsonify(current_user.tasks), 200
+    if current_user:
+        return jsonify(current_user.tasks), 200
+    else:
+        return jsonify({"msg": "no user logged in"}), 401
 
 @main.route('/tasks', methods=['POST'])
 @jwt_required()

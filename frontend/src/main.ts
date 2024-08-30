@@ -1,14 +1,14 @@
-import './assets/main.css'
+import { createApp } from 'vue';  // Import createApp instead of Vue
+import App from './App.vue';       // Import the main App component
+import router from './router';     // Import your router
+import store from './store';       // Import your Vuex store
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+// Create a new Vue app instance using Vue 3 syntax
+const app = createApp(App);
 
-import App from './App.vue'
-import router from './router'
+// Use Vue Router and Vuex
+app.use(router);
+app.use(store);
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+// Mount the app to the DOM
+app.mount('#app');
