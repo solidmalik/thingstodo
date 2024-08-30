@@ -25,6 +25,11 @@ export default createStore<State>({
     }
   },
   actions: {
+    
+    async registerUser({ commit }: VuexContext, { username, password }: { username: string; password: string }) {
+      const response = await apiClient.post('/api/register', { username, password });
+      return response.data;
+    },
     async login({ commit }, { username, password }: { username: string; password: string }) {
       const response = await apiClient.post('/api/login', { username, password });
       const token = response.data.access_token;

@@ -59,16 +59,31 @@ def create_task():
     current_user.add_task(task)
     return jsonify(task), 201
 
-@main.route('/tasks/<int:task_id>', methods=['DELETE'])
+@main.route('/tasks/<int:task_id>', methods=['DELETE', 'PUT'])  # Support both DELETE and PUT methods
 @jwt_required()
-def delete_task(task_id):
+def handle_task(task_id):
     current_user = get_user(get_jwt_identity())
-    if not any(task['id'] == task_id for task in current_user.tasks):
-        return jsonify({"msg": "Task not found"}), 404
-    
-    current_user.remove_task(task_id)
-    return jsonify({"msg": "Task deleted"}), 200
 
+    # Delete task
+    if request.method == 'DELETE':
+        if not any(task['id'] == task_id for task in current_user.tasks):
+            return jsonify({"msg": "Task not found"}), 404
+        current_user.remove_task(task_id)
+        return jsonify({"msg": "Task deleted"}), 200
+
+    # Edit task
+    if request.method == 'PUT':
+        task_data = request.get_json()  # Get the new data from the request body
+        if not task_data or 'title' not in task_data:
+            return jsonify({"msg": "Invalid data"}), 400
+        
+        # Find the task and update it
+        task = next((task for task in current_user.tasks if task['id'] == task_id), None)
+        if task is None:
+            return jsonify({"msg": "Task not found"}), 404
+        
+        task['title'] = task_data['title']  # Update the task title or other fields as needed
+        return jsonify({"msg": "Task updated", "task": task}), 200
 @main.route('/')
 def home():
     return jsonify({"msg": "Hello There"})

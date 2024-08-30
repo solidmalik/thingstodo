@@ -1,10 +1,10 @@
 <template>
-  <div class="login-form-container">
-    <form class="login-form" @submit.prevent="submitForm">
+  <div class="register-form-container">
+    <form class="register-form" @submit.prevent="submitForm">
       <input v-model="username" type="text" placeholder="Username" required />
       <input v-model="password" type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-      <router-link class="register-redirect" to="/register">Don't have an account? Register here</router-link>
+      <button type="submit">Register</button>
+      <router-link class="login-redirect" to="/login">Already have an account? Login here</router-link>
     </form>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$emit('login', {
+      this.$emit('register', {
         username: this.username,
         password: this.password
       });
@@ -29,16 +29,16 @@ export default {
 </script>
 
 <style scoped>
-.login-form-container {
+.register-form-container {
   display: flex;
   justify-content: center;  /* Center the form horizontally */
   align-items: center;  /* Center the form vertically */
   height: 20vh;  /* Full viewport height */
-  margin-top: 20em;
   background-color: #f0f2f5;  /* Light gray background */
+  margin-top: 20em;
 }
 
-.login-form {
+.register-form {
   background-color: #ffffff;  /* White background for the form */
   padding: 40px;  /* Add padding inside the form */
   border-radius: 12px;  /* Rounded corners */
@@ -50,7 +50,7 @@ export default {
   width: 100%;  /* Make the form responsive */
 }
 
-.login-form input {
+.register-form input {
   padding: 12px 16px;  /* Padding inside the input fields */
   border: 1px solid #ddd;  /* Light gray border */
   border-radius: 8px;  /* Rounded corners */
@@ -60,15 +60,15 @@ export default {
   transition: border-color 0.3s;  /* Smooth transition for border color */
 }
 
-.login-form input:focus {
+.register-form input:focus {
   outline: none;  /* Remove default outline */
   border-color: #007bff;  /* Change border color on focus */
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);  /* Add focus shadow */
 }
 
-.login-form button {
-  background-color: coral;  /* Blue background for button */
-  color: navy;  /* White text color */
+.register-form button {
+  background-color: greenyellow;  /* Blue background for button */
+  color:black;  /* White text color */
   padding: 12px 16px;  /* Padding inside the button */
   border: none;  /* Remove border */
   border-radius: 8px;  /* Rounded corners */
@@ -77,11 +77,11 @@ export default {
   transition: background-color 0.3s;  /* Smooth transition for background color */
 }
 
-.login-form button:hover {
-  background-color: orange;  /* Darker blue on hover */
+.register-form button:hover {
+  background-color: green;  /* Darker blue on hover */
 }
 
-.login-form button:focus {
+.register-form button:focus {
   outline: none;  /* Remove default outline */
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);  /* Add focus shadow */
 }

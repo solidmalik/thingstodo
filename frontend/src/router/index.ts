@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LoginView from '@/views/LoginView.vue';
 import HomeView from '@/views/HomeView.vue';
+import RegisterUser from '../views/RegisterUser.vue'
 import store from '@/store';
 
 const routes = [
@@ -8,6 +9,12 @@ const routes = [
     path: '/login',
     name: 'LoginView',
     component: LoginView,
+    meta: { requiresGuest: true }
+  },
+  {
+    path: '/register',
+    name: 'RegisterUser',
+    component: RegisterUser, 
     meta: { requiresGuest: true }
   },
   {
