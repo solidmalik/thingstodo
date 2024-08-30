@@ -136,10 +136,6 @@ npm run build  # if using npm
   - Ensure your Python environment is activated before running `flask` commands.
   - Check for any typos in environment variables.
 
-### Contributing
-
-Feel free to fork this repository and submit pull requests. Contributions are always welcome!
-
 ### License
 
 This project is licensed under the MIT License.
